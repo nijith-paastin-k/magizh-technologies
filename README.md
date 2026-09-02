@@ -1,6 +1,8 @@
 # Magizh Technologies Website
 
-Static multi-page professional IT services website.
+Professional static website for **Magizh Technologies**.
+
+Tagline: **Building Technology That Moves Business Forward**
 
 ## Pages
 - Home
@@ -10,12 +12,16 @@ Static multi-page professional IT services website.
 - FAQ
 - Contact
 
-## Run locally
-Open `index.html` in a browser, or serve the folder with any static web server.
+## Assets
+- `assets/images/magizh-logo.png` — supplied Magizh Technologies logo
+- `assets/images/nigith-profile.jpg` — supplied profile image
+- `style.css`
+- `app.js`
 
-## Before production
-1. Connect the contact form to an email/form backend.
-2. Replace the text logo with the official Magizh Technologies logo if available.
-3. Add official social links and Instagram URL if available.
-4. Add project screenshots/app imagery where desired.
-5. Configure a custom domain and HTTPS.
+## GitHub Pages
+Upload all files to the repository root. The HTML pages reference `style.css` and `app.js` from the root, so do not move them into an `assets` folder unless the HTML paths are changed.
+
+The site uses Google Fonts and Simple Icons CDN for technology/platform/social icons. An internet connection is required for those remote resources.
+
+## Contact form
+The form is currently client-side only. Connect it to a production form/email backend before using it for live enquiries.

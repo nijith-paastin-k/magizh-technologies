@@ -1,22 +1,9 @@
 
-const menu=document.querySelector('.menu-btn');
-const links=document.querySelector('.nav-links');
-if(menu) menu.addEventListener('click',()=>links.classList.toggle('open'));
-
-document.querySelectorAll('.nav-links a').forEach(a=>{
-  a.addEventListener('click',()=>links && links.classList.remove('open'));
+document.querySelectorAll('.faq button').forEach(btn => {
+  btn.addEventListener('click', () => btn.parentElement.classList.toggle('open'));
 });
-
+const menu=document.querySelector('.menu');
+const nav=document.querySelector('.navlinks');
+if(menu) menu.addEventListener('click',()=>{nav.style.display=nav.style.display==='flex'?'none':'flex'; nav.style.flexDirection='column'; nav.style.position='absolute'; nav.style.top='68px'; nav.style.left='0'; nav.style.right='0'; nav.style.padding='18px 20px'; nav.style.background='#fff'; nav.style.borderBottom='1px solid #e5eaf2';});
 const form=document.querySelector('#contactForm');
-if(form){
-  form.addEventListener('submit',(e)=>{
-    e.preventDefault();
-    const status=document.querySelector('#formStatus');
-    if(!form.checkValidity()){ form.reportValidity(); return; }
-    status.textContent='Thanks! Your enquiry is ready to be sent. Connect the form to your preferred email/Form backend before launch.';
-    status.style.display='block';
-    form.reset();
-  });
-}
-
-document.querySelectorAll('[data-year]').forEach(el=>el.textContent=new Date().getFullYear());
+if(form) form.addEventListener('submit',e=>{e.preventDefault(); const name=document.querySelector('#name').value.trim(); alert(`Thank you${name?`, ${name}`:''}! Your enquiry has been received. Connect with us directly on WhatsApp or email to continue the conversation.`); form.reset();});
