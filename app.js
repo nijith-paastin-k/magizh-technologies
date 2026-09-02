@@ -129,3 +129,61 @@ if (filterBtns.length && projectCards.length) {
     });
   });
 }
+
+/* ===== Advanced interaction layer ===== */
+
+/* Magnetic buttons — pull toward cursor within range */
+document.querySelectorAll('.btn').forEach(btn => {
+  btn.classList.add('magnetic');
+  btn.addEventListener('mousemove', e => {
+    const r = btn.getBoundingClientRect();
+    const x = e.clientX - r.left - r.width / 2;
+    const y = e.clientY - r.top - r.height / 2;
+    btn.style.transform = `translate(${x * 0.18}px, ${y * 0.35}px)`;
+  });
+  btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+});
+
+/* 3D tilt on device / project / service cards */
+const tiltEls = document.querySelectorAll('.device-card, .project, .card');
+if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  tiltEls.forEach(el => {
+    el.classList.add('tilt');
+    el.addEventListener('mousemove', e => {
+      const r = el.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - 0.5;
+      const py = (e.clientY - r.top) / r.height - 0.5;
+      el.style.transform = `perspective(700px) rotateX(${(-py * 7).toFixed(2)}deg) rotateY(${(px * 9).toFixed(2)}deg) translateY(-4px)`;
+    });
+    el.addEventListener('mouseleave', () => { el.style.transform = ''; });
+  });
+}
+
+/* Hero card cursor spotlight */
+const heroCard = document.querySelector('.hero-card');
+if (heroCard) {
+  let spot = heroCard.querySelector('.spotlight');
+  if (!spot) {
+    spot = document.createElement('div');
+    spot.className = 'spotlight';
+    heroCard.appendChild(spot);
+  }
+  heroCard.addEventListener('mousemove', e => {
+    const r = heroCard.getBoundingClientRect();
+    heroCard.style.setProperty('--x', ((e.clientX - r.left) / r.width * 100) + '%');
+    heroCard.style.setProperty('--y', ((e.clientY - r.top) / r.height * 100) + '%');
+  });
+}
+
+/* Hero aurora blobs (decorative, injected so markup stays clean) */
+const heroSection = document.querySelector('.hero');
+if (heroSection && !heroSection.querySelector('.aurora')) {
+  const a1 = document.createElement('div'); a1.className = 'aurora';
+  const a2 = document.createElement('div'); a2.className = 'aurora two';
+  heroSection.prepend(a2);
+  heroSection.prepend(a1);
+}
+
+/* Aurora blobs drift continuously via CSS keyframes (auroraDrift) —
+   left ambient rather than mouse-driven so it never fights the
+   inline transform used elsewhere and still looks alive on touch devices. */
