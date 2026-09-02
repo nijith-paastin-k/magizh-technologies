@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-label="Windows">
-  <path d="M3 3.6 L11 2.5 V11 H3 Z" fill="currentColor"/>
-  <path d="M12 2.4 L21 1.1 V11 H12 Z" fill="currentColor"/>
-  <path d="M3 12 H11 V20.5 L3 19.4 Z" fill="currentColor"/>
-  <path d="M12 12 H21 V21.9 L12 20.6 Z" fill="currentColor"/>
-</svg>
